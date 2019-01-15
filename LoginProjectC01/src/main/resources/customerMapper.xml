@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL -->
+<mapper namespace="com.test.loginEx.CustomerMapper">
+
+	<!-- ID로 검색하여 VO 가져오기 -->
+	<select id="selectCustomer" parameterType="string" resultType="Customer">
+		select * from CUSTOMER where CUSTID = #{searchId}
+	</select>
+	
+	<!-- VO를 입력해서 테이블에 1건의 데이터 등록 -->
+	<insert id="insertCustomer" parameterType="Customer">
+		insert into
+			CUSTOMER
+		values (
+			#{custid}
+			,#{password}
+			,#{name}
+			,#{email}
+			,#{division}
+			,#{idno}
+			,#{address}
+		)
+	</insert>
+	
+	<update id="updateCustomer" parameterType="Customer">
+		update CUSTOMER set 
+			PASSWORD = #{password}
+			, NAME = #{name}
+			, EMAIL = #{email}
+			, DIVISION = #{division}
+			, IDNO = #{idno}
+			, ADDRESS = #{address}
+		where CUSTID = #{custid}
+	</update>
+	
+</mapper>
